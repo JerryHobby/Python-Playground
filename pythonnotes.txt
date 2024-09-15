@@ -1,0 +1,98 @@
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --chrome-frame --user-data-dir="%tmp%\chrome_tmp_user_dir~%RANDOM%" --window-size=800,600 --app=https://bestfreehtmlcsstemplates.com
+
+
+
+dev env
+
+    python
+    pip
+    pipenv
+    visual code
+        python
+    zsh?
+
+setup project
+    create folder
+    pipenv install django
+    pipfile - packages, requires, etc
+
+
+pipenv shell - activate venv
+django-admin startproject . // create
+
+python manage.py runserver 9000 
+
+------------------------------------------------
+
+vscode terminal window
+
+in terminal - pipenv --venv // copy this path
+in code
+    create open project folder
+    command palette
+    python interpreter
+    enter path/bin/python
+
+
+------------------------------------------------
+
+django apps
+
+admin
+auth
+contenttypes
+sessions - legacy del
+message / one time notices
+staticfiles
+
+python manage.py startapp playground
+
+django apps in playground
+migrations / databse
+admin.py / configure
+apps.py / configure module
+models / configure classes
+test / unit tests
+views / request handler
+
+add the new app into the INSTALLED_APPS in settings.py
+
+------------------------------------------------
+
+views
+
+
+function that takes a request and returns response
+
+from django.shortcust inport render
+from django.http import HttpResponse
+def hello_world(request):
+    return HttpResponse('Hello World')
+
+now map this to a Url 
+
+create newfile  urls.py
+
+map urls to view functions
+
+
+from django urls import path 
+from . import views
+
+urlpatterns = [
+    path('hello/', views.hello_world),
+]
+
+now import urls.py into urls.py in root
+
+from django.urls import path, include
+urlpatterns = [
+    path('playground/', include('playground.urls'))
+]
+
+
+
+
+
+

@@ -1,7 +1,5 @@
+import random 
 
-
-salaries = [2000, 1800, 3100, 4400, 1500]
-bonus = int(input())
-
-salaries = list(map(lambda x: x + bonus, salaries))
-print(salaries)
+for i in range(0,100):
+  x = random.randint(1_000_000_000, 9_999_999_999)
+  print(x)
