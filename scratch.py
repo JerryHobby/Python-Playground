@@ -4,7 +4,9 @@ def books():
 print("Are you a BOOKS/NOVELS person? TRUE or FALSE!")
 ans1 = str(input())
 print( ans1.capitalize() )
+
 if ans1 == "True":
     print(books())
+
 elif ans1 == "False" :
     print("Oh!No worries.")
