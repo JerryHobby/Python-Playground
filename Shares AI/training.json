@@ -1,0 +1,23 @@
+{ "prompt": "How do I issue a ticket for a reservation in SHARES?", "completion": "To issue a ticket in SHARES, follow these steps:\n1. Retrieve the PNR using the record locator.\n2. Verify all passenger and flight details are correct.\n3. Calculate the fare and ensure it matches the quoted price.\n4. Enter the ticketing command to generate the electronic ticket.\n5. Confirm the ticket has been issued by checking the ticket number in the PNR."}
+{ "prompt": "How do I issue a ticket for a reservation in SHARES?", "completion": "To issue a ticket in SHARES, follow these steps:\n1. Retrieve the PNR using the record locator.\n2. Verify all passenger and flight details are correct.\n3. Calculate the fare and ensure it matches the quoted price.\n4. Enter the ticketing command to generate the electronic ticket.\n5. Confirm the ticket has been issued by checking the ticket number in the PNR."}
+
+
+Prompts:[
+    "How do I sign into SHARES?",
+    "How do I open a PNR?",
+    "How do I move up and down in a PNR?",
+    "How do I issue a ticket for a reservation in SHARES?",
+    "How do I assign seats?",
+    "How do I read comments?",
+    "What are the components of a PNR?",
+
+]
+
+Sections: [
+    "Getting Started",
+    "PNR Management",
+    "Ticketing",
+    "Seat Assignments",
+    "Comments",
+    "PNR Structure",
+]
