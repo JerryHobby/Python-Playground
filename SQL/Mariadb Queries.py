@@ -2,15 +2,19 @@ import mysql.connector
 from mysql.connector import Error
 from dotenv import load_dotenv
 import os
-
+import logging
 # Load environment variables from .env file
+logging.basicConfig(level=logging.DEBUG)
+
 load_dotenv()
+
 
 # Database connection variables
 hostname = os.getenv('HOSTNAME')
 user = os.getenv('USER')
 password = os.getenv('PASSWORD')
 database = os.getenv('DATABASE')
+logging.debug(f"Hostname: {hostname}, User: {user}, Database: {database}")
 
 try:
     # Connect to the MariaDB database
