@@ -4,6 +4,7 @@ import json
 ##############################################################
 
 data_dir = './Shares AI/SHARES kb/'
+data_dir = './SHARES kb/'
 
 # Define the output file for the JSONL data
 output_file = data_dir + 'SHARES_training.jsonl'
