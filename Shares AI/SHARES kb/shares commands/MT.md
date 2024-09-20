@@ -12,8 +12,10 @@ COMPLETION: (starts on next line)
 ## Description
 The 'MT' command is used to view the top of the PNR.
 ## Usage
+```
 MT
-
+```
 ## Example
+```
 MT
-
+```

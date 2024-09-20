@@ -12,7 +12,10 @@ COMPLETION: (starts on next line)
 The * command retrieves a PNR into the current work area.
 
 ## Usage
+```
 *PNR
-
+```
 ## Example
+```
 *ABC123
+```

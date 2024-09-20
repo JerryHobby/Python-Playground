@@ -11,9 +11,15 @@ COMPLETION: (starts on next line)
 ## Description
 The 'I' command is used to ignore all changes and close the PNR.
 
+**Warning: Using the 'I' command will discard all unsaved changes.** 
+
 ## Usage
+```
 I
+```
 
 ## Example
+```
 I
+```
 

@@ -12,7 +12,11 @@ COMPLETION: (starts on next line)
 The 'MB' command is used to display last page of the PNR.
 
 ## Usage
+```
 MB
+```
 
 ## Example
+```
 MB
+```

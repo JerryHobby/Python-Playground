@@ -7,14 +7,20 @@ PROMPT: How do you ignore and redisplay the current PNR?
 KEYWORDS: shares, command, IR
 
 COMPLETION: (starts on next line)
-# I - IGNORE AND REDISPLAY
+# IR - IGNORE AND REDISPLAY
 
 ## Description
 The 'IR' command is used to ignore all changes and redisplay the current PNR.
 
+**Warning: Using the 'IR' command will discard all unsaved changes.** 
+
 ## Usage
+```
 IR
+```
 
 ## Example
+```
 IR
+```
 

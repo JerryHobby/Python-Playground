@@ -12,8 +12,11 @@ COMPLETION: (starts on next line)
 The 'MD' command is used to display the next page of the PNR.
 
 ## Usage
+```
 MD
+```
 
 ## Example
+```
 MD
-
+```

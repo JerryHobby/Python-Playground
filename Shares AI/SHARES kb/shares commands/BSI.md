@@ -12,20 +12,20 @@ COMPLETION: (starts on next line)
 ## Description
 The 'BSI' command is used to sign in to SHARES.
 
-You need to sign in to any work area you intend to use.
+You need to sign in to any work area you intend to use.  If you are using more than one work area, sign into each
+area separately.
 
 To sign in, you will need to provide the work area, shares number, SINE, duty code, and station code.
 
-## Usage
-BSI[WORKAREA][####][SINE]/[DUTYCODE]/[AAA]
+## Examples
 
-### WORKAREA - A, B, C, D, W
-### #### - Shares '#'
-### SINE - Shares SINE
-### DUTYCODE - Function Code (SU, AS, etc.)
-### AAA - Station code
+```
+BSIA followed by your sine information and duty code.
+BSIB followed by your sine information and duty code.
+BSIC followed by your sine information and duty code.
+BSID followed by your sine information and duty code.
+BSIW followed by your sine information and duty code.
+```
 
-## Example
-Not provided for security reasons
 
 

@@ -13,7 +13,11 @@ COMPLETION: (starts on next line)
 The 'BSO' command is used to sign out of SHARES.
 
 ## Usage
+```
 BSO
+```
 
 ## Example
+```
 BSO
+```

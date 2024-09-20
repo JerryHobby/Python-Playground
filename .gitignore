@@ -1,2 +1,3 @@
 SQL/.env
 SQL/*.db
+!/OpenAI/.env

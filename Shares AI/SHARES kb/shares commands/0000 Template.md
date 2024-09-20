@@ -10,10 +10,16 @@ COMPLETION: (starts on next line)
 ## Description
 The 'A' command is used to check the availability of a flight.
 
+**Warning: ** 
+
 ## Usage
+```
 A01JANLHRJFK
+```
 
 ## Example
+```
 A 1JAN LHRJFK
+```
 
 
