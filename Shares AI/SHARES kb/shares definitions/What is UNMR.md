@@ -2,8 +2,7 @@ PROMPT: first question
 PROMPT: second question
 PROMPT: third question
 
-KEYWORDS: shares, definition
-
+KEYWORDS: shares, procedure, template
 COMPLETION: (starts on next line)
 # A - AVAILABILITY
 
