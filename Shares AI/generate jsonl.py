@@ -1,89 +1,136 @@
 import os
 import json
 
-# Define the output file for the JSONL data
-output_file = './SHARES_training.jsonl'
+##############################################################
 
-# Define the directories containing the markdown files
+data_dir = './Shares AI/SHARES kb/'
+
+# Define the output file for the JSONL data
+output_file = data_dir + 'SHARES_training.jsonl'
+
+# Define the input directories containing the markdown files
+
 directories = [
-    './SHARES kb/shares commands/',
-    './SHARES kb/shares definitions/',
-    './SHARES kb/shares procedures/',
+    data_dir + 'shares commands',
+    data_dir + 'shares definitions',
+    data_dir + 'shares procedures',
     ]
+
+# Define the prefix of files to ignore
 
 ignore_file_prefix = '0000'
 
-
 ##############################################################
-# Initialize an empty list to hold data
-data = []
 
-for directory in directories:
-    print("Processing folder:", directory)
+def collect_files(directories, ignore_file_prefix):
+    """
+    Collect all markdown files from the specified directories
+    Append the folder name to the file name
+    Skip files starting with the ignore_file_prefix
+    """
 
-    prompt_files = sorted([f for f in os.listdir(directory) if f.endswith('.md')])
+    files = []
+    for directory in directories:
+        dir_contents = os.listdir(directory)
+        for f in dir_contents:
+            if f.endswith('.md') and not f.startswith(ignore_file_prefix):
+                files.append(os.path.join(directory, f))
+    return files
 
-    for prompt_file in prompt_files:
 
-        if prompt_file.startswith(ignore_file_prefix):
-            print("\tSkipping:", prompt_file)
+def parse_file(file):
+    """
+    Parse the prompts, keywords, and completions from one markdown file
+    returns array of prompts and the completion text (used with each prompt)
+    """
+    prompt_prefix = "PROMPT:"
+    keyword_prefix = "KEYWORDS:"
+    completion_prefix = "COMPLETION:"
+
+    prompts = []
+    completion = ""
+    keywords = []
+
+    with open(file, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+
+    header = True;
+    for line in lines:
+        # parse header fields
+        if line.startswith(prompt_prefix):
+            prompts.append(line.strip(prompt_prefix).strip("\n").strip(' '))
+
+        elif line.startswith(keyword_prefix):
+            keywords = line.strip(keyword_prefix).strip("\n").strip(' ').split(',')
+            
+        elif line.startswith(completion_prefix):
+            header = False
+
+        # parse completion
+        elif not header:
+            completion += line
+
+    if header:
+        return None, None
+
+    completion += "\n\n#### keywords: "
+    for keyword in keywords:
+        completion += f"{keyword.strip(' ')}, "
+
+    completion = completion.strip(' ').strip(',')
+    return prompts, completion
+
+
+def create_jsonl_data(prompts, completion):
+    """
+    Create a JSONL data object
+    """
+    data = []
+
+    for prompt in prompts:
+        print("\t\tPrompt:", prompt)
+        json_obj = {
+            'prompt': prompt,
+            'completion': completion
+        }
+        data.append(json_obj)
+
+    return data
+
+
+def write_jsonl_data(data):
+    """
+    Write the data to a JSONL file
+    """
+    with open(output_file, 'w', encoding='utf-8') as f:
+        for entry in data:
+            json.dump(entry, f)
+            f.write('\n')
+
+
+def main():
+    # Initialize an empty list to hold data
+    json_data = []
+
+    # Process each directory to get all valid file names
+    files = collect_files(directories, ignore_file_prefix)
+    #print(*files, sep="\n")
+
+    # Process each file
+    for file in files:
+        print("Processing file:", file)
+
+        prompts, completion = parse_file(file)
+        if prompts is None:
+            print("Error: No prompt found in file", file)
             continue
 
-        print("\tProcessing:", prompt_file)
+        file_json = create_jsonl_data(prompts, completion)
+        json_data.extend(file_json)
 
-        prompt_path = os.path.join(directory, prompt_file)
+    write_jsonl_data(json_data)
 
-        with open(prompt_path, 'r', encoding='utf-8') as f:
-            prompts = []
-            completion = ""
-            keywords = []
 
-            header = True;
-            lines = f.readlines()
-            for line in lines:
-                # parse header fields
-                if line.startswith('PROMPT:'):
-                    prompts.append(line.strip("PROMPT:").strip("\n").strip(' '))
-                elif line.startswith('KEYWORDS:'):
-                    keywords = line.strip("KEYWORDS:").strip("\n").strip(' ').split(',')
-                elif line.startswith('COMPLETION:'):
-                    header = False
 
-                # parse completion
-                elif not header:
-                    completion += line
-
-            completion += "\n\n#### keywords: "
-            for keyword in keywords:
-                completion += f"{keyword.strip(' ')}, "
-
-            completion = completion.strip(' ').strip(',')
-
-            # error checking
-            if len(prompts) == 0:
-                print(f"Error: No prompt found in file {prompt_file}")
-                continue
-            if len(completion) == 0:
-                print(f"Error: No completion found in file {prompt_file}")
-                continue
-            if len(keywords) == 0:
-                print(f"Error: No keywords found in file {prompt_file}")
-                continue
-
-            for prompt in prompts:
-                # Create a JSON object
-                json_obj = {
-                    'prompt': prompt,
-                    'completion': completion
-                }
-
-                data.append(json_obj)
-                # print(json_obj)
-
-# Write the data to a JSONL file
-with open(output_file, 'w', encoding='utf-8') as f:
-    for entry in data:
-        json.dump(entry, f)
-        f.write('\n')
-
-print(f"JSONL file '{output_file}' has been created successfully.")
+if __name__ == "__main__":
+    main()
